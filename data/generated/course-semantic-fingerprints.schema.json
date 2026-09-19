@@ -20,6 +20,10 @@
         "primary_goals": { "type": "array", "items": { "type": "string" } },
         "secondary_goals": { "type": "array", "items": { "type": "string" } },
         "workflow_stages": { "type": "array", "items": { "type": "string" } },
+        "primary_workflow_stages": { "type": "array", "items": { "type": "string" } },
+        "secondary_workflow_stages": { "type": "array", "items": { "type": "string" } },
+        "concept_centrality": { "type": "object", "additionalProperties": { "enum": ["HIGH", "MEDIUM", "LOW", "INCIDENTAL"] } },
+        "central_negative_sensitive_topics": { "type": "array", "items": { "type": "string" } },
         "evidence": { "type": "array", "items": { "type": "object", "required": ["field", "excerpt", "strength"] } },
         "confidence": { "enum": ["high", "medium", "low"] }
       }
