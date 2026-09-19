@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PAACADEMY Course Semantic Fingerprint",
+  "type": "object",
+  "required": ["schema_version", "source", "method", "count"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "source": { "type": "string" },
+    "method": { "type": "string" },
+    "count": { "type": "integer", "minimum": 0 },
+    "fingerprint": {
+      "type": "object",
+      "required": ["course_id", "slug", "name", "primary_topics", "workflow_stages", "primary_goals", "evidence", "confidence"],
+      "properties": {
+        "course_id": { "type": "string" },
+        "slug": { "type": "string" },
+        "name": { "type": "string" },
+        "primary_topics": { "type": "array", "items": { "type": "string" } },
+        "secondary_topics": { "type": "array", "items": { "type": "string" } },
+        "primary_goals": { "type": "array", "items": { "type": "string" } },
+        "secondary_goals": { "type": "array", "items": { "type": "string" } },
+        "workflow_stages": { "type": "array", "items": { "type": "string" } },
+        "evidence": { "type": "array", "items": { "type": "object", "required": ["field", "excerpt", "strength"] } },
+        "confidence": { "enum": ["high", "medium", "low"] }
+      }
+    }
+  }
+}
