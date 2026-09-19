@@ -1,4 +1,4 @@
-# PAACADEMY AI Advisor Playground V0.4.1
+# PAACADEMY AI Advisor Playground V0.4.2
 
 Standalone internal test application for exercising evidence-grounded advisor decisions against the joined 243-course PAACADEMY snapshot before connecting production channels.
 
@@ -10,7 +10,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://localhost:3000`. V0.4.1 uses a deterministic server route and does not require an API key. If/when a model-backed orchestrator is added, keep `OPENAI_API_KEY` server-side only; never expose it to browser code or commit it.
+Open `http://localhost:3000`. V0.4.2 uses a deterministic server route and does not require an API key. If/when a model-backed orchestrator is added, keep `OPENAI_API_KEY` server-side only; never expose it to browser code or commit it.
 
 ## Verify
 
@@ -22,9 +22,9 @@ npm run build
 
 ## Data boundaries
 
-`data/policies.ts` contains the approved policy snapshot. `data/snapshots/all-courses-with-all-details.csv` is the factual course source; `data/snapshots/course_intelligence.json` is the derived intelligence source. `data/catalog.ts` loads and joins them once at server startup using immutable course IDs, reports diagnostics, and keeps purchase availability `UNKNOWN` until a live API exists. `data/course-fingerprints.ts` derives the V0.4.1 semantic fingerprint map once at module load from the factual + intelligence layers; it preserves workflow stages, centrality, field-labelled evidence excerpts, fit signals and confidence without changing source course data. `data/generated/course-semantic-fingerprints.schema.json` documents the fingerprint contract. No mock catalog is used at runtime.
+`data/policies.ts` contains the approved policy snapshot. `data/snapshots/all-courses-with-all-details.csv` is the factual course source; `data/snapshots/course_intelligence.json` is the derived intelligence source. `data/catalog.ts` loads and joins them once at server startup using immutable course IDs, reports diagnostics, and keeps purchase availability `UNKNOWN` until a live API exists. `data/course-fingerprints.ts` derives the V0.4.2 semantic fingerprint map once at module load from the factual + intelligence layers; it preserves workflow stages, centrality, field-labelled evidence excerpts, fit signals and confidence without changing source course data. `data/generated/course-semantic-fingerprints.schema.json` documents the fingerprint contract. No mock catalog is used at runtime.
 
-## V0.4.1 retrieval and ranking
+## V0.4.2 retrieval and ranking
 
 The engine first retrieves a bounded pool of up to 24 courses using taxonomy, workflow, goal, domain, level and software overlap. It then validates hard exclusions and content status before deterministic semantic alignment. Each candidate records centrality-aware alignment labels (`CENTRAL_MATCH` through `CONFLICT`) for goal, outcome and workflow, with field-labelled evidence and no evidence-count double counting. Current explicit goals and outcomes override historical generalities while history remains in the profile; negative preferences persist and central conflicts are hard-excluded or strongly penalized. Alternatives are selected from validated relevant courses with a meaningful workflow difference. Debug output exposes active objectives, true profile delta, ranked versus selected primary, stability/change reasons, decomposed score components, centrality and matched evidence excerpts.
 
